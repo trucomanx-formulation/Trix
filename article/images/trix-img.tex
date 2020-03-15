@@ -1,0 +1,42 @@
+\documentclass[margin=5mm]{standalone}
+\usepackage{tikz}
+\usetikzlibrary{matrix,calc}
+
+
+\begin{document}
+\begin{tikzpicture}[every node/.style={anchor=north west,fill=white,minimum width=1.4cm,minimum height=10mm}]
+\matrix (mA) [draw,matrix of math nodes]
+{
+c_{111} & c_{121} & \dots  & c_{2N1} \\
+c_{211} & c_{221} & \dots  & c_{2N1} \\
+\vdots  & \vdots  & \dots  & \vdots  \\
+c_{M11} & c_{M21} & \dots  & c_{MN1} \\
+};
+
+\matrix (mB) [draw,matrix of math nodes] at ($(mA.south west)+(1.5,0.7)$)
+{
+c_{11l} & c_{12l} & \dots  & c_{2Nl} \\
+c_{21l} & c_{22l} & \dots  & c_{2Nl} \\
+\vdots  & \vdots  & \dots  & \vdots  \\
+c_{M1l} & c_{M2l} & \dots  & c_{MNl} \\
+};
+
+\matrix (mC) [draw,matrix of math nodes] at ($(mB.south west)+(1.5,0.7)$)
+{
+c_{11L} & c_{12L} & \dots  & c_{2NL} \\
+c_{21L} & c_{22L} & \dots  & c_{2NL} \\
+\vdots  & \vdots  & \dots  & \vdots  \\
+c_{M1L} & c_{M2L} & \dots  & c_{MNL} \\
+};
+
+\draw[dashed](mA.north east)--(mC.north east);
+\draw[dashed](mA.north west)--(mC.north west);
+\draw[dashed](mA.south west)--(mC.south west);
+
+\draw [->] ($(mA.north west)+(0.0,0.7)$)  -- ($(mA.north east)+(0.0,0.7)$)   node [near end, above left] {$e_2$};
+\draw [->] ($(mA.north west)+(-0.7,0.0)$)  -- ($(mA.south west)+(-0.7,0.0)$)   node [midway, left] {$e_1$};
+\draw [->] ($(mA.north east)+(+0.7,0.0)$) -- ($(mC.north east)+(+0.7,0.0)$) node [near end, above right] {$e_3$};
+\end{tikzpicture}
+
+
+\end{document}
